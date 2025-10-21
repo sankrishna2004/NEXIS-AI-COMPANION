@@ -1,0 +1,14 @@
+FROM node:20-alpine
+WORKDIR /app
+
+# Copy package files first
+COPY package*.json ./
+
+# Run the installation INSIDE the container to get the correct packages
+RUN npm install
+
+# Copy the rest of the app code
+COPY . .
+
+EXPOSE 5173
+CMD ["npm", "run", "dev"]
